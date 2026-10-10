@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-padding-top: 2rem;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #385736;
+    outline-offset: 3px;
+  }
+
+  .dark *:focus-visible {
+    outline: 2px solid #C4D3BA;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .fluid-hero-title {
+    font-size: clamp(2.25rem, 4.2vw + 1rem, 3.75rem);
+    line-height: 1.15;
+  }
+
+  .fluid-section-title {
+    font-size: clamp(1.75rem, 2.5vw + 0.85rem, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .fluid-body {
+    font-size: clamp(0.95rem, 0.35vw + 0.88rem, 1.0625rem);
+    line-height: 1.7;
+  }
+
+  .dark .hero-ambient {
+    background-image:
+      radial-gradient(circle at 12% 18%, rgb(176 196 168 / 22%) 0%, rgb(126 143 126 / 10%) 28%, transparent 62%),
+      linear-gradient(180deg, #1E3428 0%, #172B20 100%);
+  }
+
+  .hero-ambient {
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(176, 196, 168, 0.42) 0%, rgba(196, 211, 186, 0.2) 32%, rgba(244, 248, 244, 0) 65%),
+      linear-gradient(180deg, #DCECDD 0%, #F4F8F4 100%);
+  }
+}
+
+@layer base {
+  body { min-width: 320px; }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply max-w-6xl mx-auto px-5 sm:px-8 lg:px-10;
+  }
+
+  .section-spacing {
+    @apply py-16 sm:py-24;
+  }
+
+  .surface-card {
+    @apply rounded-2xl border border-peony-500/25 bg-white dark:bg-espresso-800;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest text-espresso-800 dark:text-peony-200;
+  }
+
+  .field-label {
+    @apply block text-xs font-semibold mb-2;
+  }
+
+  .form-input {
+    @apply w-full min-h-12 rounded-xl border border-peony-500/40 bg-peony-50 dark:bg-espresso-900 px-4 py-3 text-sm placeholder:text-espresso-700 dark:placeholder:text-alabaster-300;
+  }
+
+  .button-primary {
+    @apply min-h-12 inline-flex items-center justify-center rounded-full bg-peony-300 px-6 py-3 text-sm font-semibold text-espresso-900 transition-colors hover:bg-peony-200;
+  }
+}
+
+@layer components {
+  .button-secondary {
+    @apply min-h-12 inline-flex items-center justify-center rounded-full border border-peony-500/40 bg-white/60 dark:bg-espresso-800/60 px-6 py-3 text-sm font-semibold text-espresso-900 dark:text-alabaster-100 transition-colors hover:bg-peony-100 dark:hover:bg-espresso-700;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    @apply surface-card p-6 sm:p-7;
+    display: grid;
+    gap: 1.25rem;
+    box-shadow: 0 8px 24px rgb(16 31 23 / 8%);
+  }
+
+  @media (min-width: 768px) {
+    .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .project-card {
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+}
